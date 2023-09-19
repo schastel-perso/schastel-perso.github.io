@@ -212,7 +212,7 @@ function showSelectedMonsters(selectedMonsterIds) {
 	if (cardCount === 0) {
 		// Placeholder: empty card
 		console.log("No monster!")
-		selectedMonsterTable += '<div class="card" style="min-width: 300px; min-height:500px;">';
+		selectedMonsterTable += '<div class="card" style="min-width: 300px; max-width: 300px; min-height:500px;">';
 		selectedMonsterTable += '<div class="contents"><p>Monster here</p></div>'
 		selectedMonsterTable += '</div>';
 	}
@@ -223,7 +223,7 @@ function showSelectedMonsters(selectedMonsterIds) {
 }
 
 function buildMonsterCard(monsterId) {
-	let monsterCard = '<div class="card" style="min-width: 300px; min-height:500px;">';
+	let monsterCard = '<div class="card" style="min-width: 300px; max-width: 300px; min-height:500px;">';
     // Content
 	monsterCard += '<div class="contents">';
 	monsterCard += '<p class="title mt-2 mb-0">';
