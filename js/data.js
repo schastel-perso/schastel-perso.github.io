@@ -200,6 +200,8 @@ function selectMonsters(selectedMonsterIds) {
 	});
 }
 
+const CARD_SPEC = '<div class="card" style="min-width: 250px; max-width: 250px; min-height:400px; max-height:400px;">';
+
 function showSelectedMonsters(selectedMonsterIds) {
 	console.log(selectedMonsterIds);
 	let selectedMonsterTable = '<div class="row">';
@@ -212,7 +214,7 @@ function showSelectedMonsters(selectedMonsterIds) {
 	if (cardCount === 0) {
 		// Placeholder: empty card
 		console.log("No monster!")
-		selectedMonsterTable += '<div class="card" style="min-width: 300px; max-width: 300px; min-height:500px;">';
+		selectedMonsterTable += CARD_SPEC;
 		selectedMonsterTable += '<div class="contents"><p>Monster here</p></div>'
 		selectedMonsterTable += '</div>';
 	}
@@ -223,13 +225,13 @@ function showSelectedMonsters(selectedMonsterIds) {
 }
 
 function buildMonsterCard(monsterId) {
-	let monsterCard = '<div class="card" style="min-width: 300px; max-width: 300px; min-height:500px;">';
+	let monsterCard = CARD_SPEC;
     // Content
 	monsterCard += '<div class="contents">';
-	monsterCard += '<p class="title mt-2 mb-0">';
+	monsterCard += '<h1 class="title u-pull-center text-xl font-extrabold">';
 	monsterCard += monsters[monsterId].name;
-	monsterCard += '</p>';
-	monsterCard += '<div id="action-' + monsterId + '">Action here</div>';
+	monsterCard += '</h1>';
+	monsterCard += '<div id="action-' + monsterId + '">...</div>';
 	monsterCard += '</div>'; // Content
 	
 	monsterCard += '</div>'; // Card
@@ -312,12 +314,13 @@ function newTurnForMonster(monsterId) {
 
 function renderAction(eltId, action) {
 	console.log("Rendering " + eltId);
-	let contents = "";
-	contents += "<p><b>Name:</b> ";
-	contents += action.name + "</p>";
-	contents += "<p><b>Initiative:<b/> ";
-	contents += action.initiative + "</p>";
-	contents += "<p><b>Actions:</b><br/>";
+	let contents = '<div class="divider"/>';
+	contents += "<div><p/></div><div>&nbsp;";
+	contents += action.name;
+	contents += ' <span class="u-pull-right text-xl font-extrabold">';
+	contents += action.initiative + ' &nbsp;</span></div>';
+	contents += '<div class="divider" data-content="Actions"/>';
+	contents += "<p/><p>";
 	contents += action.description + "</p>";
 	if (action.reset) {
 		contents += "<p/><p>Reset</p>";
